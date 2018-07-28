@@ -1,5 +1,5 @@
 
-" Interface customizations
+" * Interface customizations
 
 " Use comma as the leader key
 let mapleader = ","
@@ -7,7 +7,16 @@ let mapleader = ","
 " Show line numbers
 set number
 
-" Put these lines at the very end of your vimrc file.
+" * Settings for plugins
+
+" ALE
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   'markdown': ['prettier'],
+\}
+
+" * Put these lines at the very end of your configuration file.
 
 " Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
