@@ -17,6 +17,19 @@ if [ -e $HOME/.bashrc ] ; then
 fi
 ln -s $DOTFILES_DIR/bash/.bash_profile $HOME/.bash_profile
 
+# Git
+if [ -e $HOME/.gitconfig ] ; then
+  mv $HOME/.gitconfig $SAVE_DIR 
+fi
+
+ln -s $DOTFILES_DIR/gitconfig/.gitconfig $HOME/.gitconfig
+
+if [ -e $HOME/.gitexclusions.txt ] ; then
+  mv $HOME/.gitexclusions.txt $SAVE_DIR 
+fi
+
+ln -s $DOTFILES_DIR/gitconfig/.gitexclusions.txt $HOME/.gitexclusions.txt
+
 # Neovim 
 NVIM_DIR=$HOME/.config/nvim
 if [ ! -d $NVIM_DIR ]  ; then

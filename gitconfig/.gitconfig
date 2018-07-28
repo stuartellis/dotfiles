@@ -1,0 +1,19 @@
+[user]
+	name = Stuart Ellis
+	email = stuart@stuartellis.name
+[push]
+	default = simple
+[alias]
+	br = branch
+	co = checkout
+	ci = commit
+	df = diff
+	lg = log --graph --decorate --oneline --abbrev-commit --all
+	st = status
+[core]
+	excludesfile = /Users/se/.gitexclusions.txt
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
