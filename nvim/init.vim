@@ -7,6 +7,10 @@ let mapleader = ","
 " Show line numbers
 set number
 
+" * Settings for Vim features
+nmap <silent> <leader>s :set spell!<CR>
+set spelllang=en_gb
+
 " * Settings for plugins
 
 " ALE

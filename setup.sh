@@ -39,3 +39,11 @@ else
 fi
 ln -s $DOTFILES_DIR/nvim/init.vim $NVIM_DIR/init.vim
 
+NVIM_SPELL_DIR=$HOME/.config/nvim/spell
+if [ ! -d $NVIM_SPELL_DIR ]  ; then
+  mkdir -p $NVIM_SPELL_DIR
+else
+  mkdir -p $SAVE_DIR/spell
+  mv $NVIM_SPELL_DIR/en.utf-8.add $SAVE_DIR/spell
+fi
+ln -s $DOTFILES_DIR/nvim/spell/en.utf-8.add $NVIM_DIR/spell/en.utf-8.add
