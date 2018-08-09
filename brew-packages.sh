@@ -1,21 +1,29 @@
 #!/bin/bash
 
 CLI_PACKAGES=(
-  'ansible' 'awscli'
+  'ansible' 
+  'awscli' 'minio-mc'
   'git' 'git-lfs'
   'go' 'dep'
-  'hugo' 'restic'
-  'mysql' 'minio-mc'
+  'hugo'
+  'restic'
+  'mysql' 
   'python3' 'pipenv'
-  'neovim' 'node@8'
+  'neovim' 
+  'node@8'
 )
 
 GUI_PACKAGES=(
-  'calibre' 'docker' 
-  'firefox' 'google-chrome' 
+  'android-studio' 'java' 
+  'calibre' 
+  'docker' 'virtualbox'  
+  'firefox' 'google-chrome'
+  'google-backup-and-sync' 
   'libreoffice'
-  'skype' 'slack' 'spotify'
-  'vienna' 'virtualbox'
+  'skype' 'ringcentral' 
+  'colloquy' 'slack' 
+  'spotify' 
+  'vienna'
 )
 
 brew update
@@ -27,6 +35,6 @@ done
 
 for each in "${GUI_PACKAGES[@]}"
 do
-  brew install "$each"
+  brew cask install "$each"
 done
 
