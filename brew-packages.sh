@@ -7,7 +7,7 @@ CLI_PACKAGES=(
   'go' 'dep'
   'hugo'
   'restic'
-  'mysql' 
+  'mysql@5.6' 
   'python3' 'pipenv'
   'neovim' 
   'node@8'
