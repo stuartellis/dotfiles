@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CLI_PACKAGES=(
+  'bash-completion'
   'ansible' 
   'awscli' 'minio-mc'
   'git' 'git-lfs'
