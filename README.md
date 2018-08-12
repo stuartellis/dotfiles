@@ -2,17 +2,17 @@
 
 Personal configuration files.
 
-## Prerequisites
+## Vim plugins
 
-### Tools
+To install ALE:
 
-- Git (obviously)
-- Go
-- Node.js
-- Python 3.7
+    mkdir -p ~/.local/share/nvim/site/pack/git-plugins/start
+    git clone https://github.com/w0rp/ale.git ~/.local/share/nvim/site/pack/git-plugins/start/ale
 
-### Linters
+## Linters
 
-- npm -g install prettier
-- pip3 install --user cfn-lint
-- pip3 install --user yamllint
+Run these commands to install linters:
+
+    npm -g install prettier
+    pip3 install --user cfn-lint
+    pip3 install --user yamllint
