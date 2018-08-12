@@ -3,7 +3,7 @@
 CLI_PACKAGES=(
   'bash-completion'
   'ansible' 
-  'awscli' 'minio-mc'
+  'awscli' 'rclone'
   'git' 'git-lfs'
   'go' 'dep'
   'hugo'
