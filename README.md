@@ -16,3 +16,10 @@ Run these commands to install linters:
     npm -g install prettier
     pip3 install --user cfn-lint
     pip3 install --user yamllint
+
+## Applications that require manual installation
+
+- Delicious Library 2
+- Microsoft Remote Desktop
+- Pixelmator
+- Xcode

@@ -17,13 +17,15 @@ CLI_PACKAGES=(
 GUI_PACKAGES=(
   'android-studio' 'java' 
   'calibre' 'etcher'
+  'amazon-workspaces' 
   'docker' 'virtualbox'  
   'firefox' 'google-chrome'
   'google-backup-and-sync' 
   'libreoffice'
   'skype' 'ringcentral' 
   'colloquy' 'slack' 'gitter' 
-  'spotify' 
+  'spotify'
+  'veracrypt' 
   'vienna'
 )
 
