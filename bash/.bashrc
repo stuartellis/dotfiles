@@ -1,6 +1,6 @@
 
 # Text editor
-export EDITOR="nvim"
+export EDITOR="code -w"
 
 # Amazon Web Services profile
 export AWS_PROFILE=default
@@ -8,9 +8,6 @@ export AWS_PROFILE=default
 # PATH
 export GOPATH="$HOME/Documents/projects"
 export PATH="$HOME/bin:$GOPATH/bin:$HOME/Library/Python/3.7/bin:/usr/local/opt/node@8/bin:/usr/local/opt/mysql@5.6/bin:$PATH"
-
-# Gimme to provide Go
-eval "$(gimme 1.10.3)"
 
 # Aliases
 alias gogo="cd $HOME/Documents/projects/src/gitlab.com/stuart-ellis/"
