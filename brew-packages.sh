@@ -8,7 +8,7 @@ CLI_PACKAGES=(
   'gimme'
   'hugo' 
   'restic'
-  'mysql@5.6' 
+  'mysql@5.7' 
   'python3' 'pipenv'
   'neovim' 
   'node@8'
