@@ -5,7 +5,7 @@ CLI_PACKAGES=(
   'ansible' 
   'awscli' 'rclone'
   'git' 'git-lfs'
-  'gimme'
+  'go' 'dep'
   'hugo' 
   'restic'
   'mysql@5.7' 
