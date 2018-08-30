@@ -18,6 +18,7 @@ GUI_PACKAGES=(
   'android-studio' 'java' 
   'calibre' 'etcher'
   'amazon-workspaces' 
+  'dashlane'
   'docker' 'virtualbox'  
   'firefox' 'google-chrome'
   'google-backup-and-sync' 
