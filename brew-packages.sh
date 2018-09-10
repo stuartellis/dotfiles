@@ -12,6 +12,7 @@ CLI_PACKAGES=(
   'python3' 'pipenv'
   'neovim' 
   'node@8'
+  'shellcheck'
 )
 
 GUI_PACKAGES=(
