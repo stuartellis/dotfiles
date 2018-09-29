@@ -2,10 +2,8 @@
 
 CLI_PACKAGES=(
   'bash-completion'
-  'ansible' 
   'awscli' 'rclone'
   'git' 'git-lfs'
-  'go' 'dep'
   'hugo' 
   'restic'
   'mysql@5.7' 
@@ -16,15 +14,13 @@ CLI_PACKAGES=(
 )
 
 GUI_PACKAGES=(
-  'android-studio' 'java' 
   'calibre' 'etcher'
   'amazon-workspaces' 
-  'dashlane'
   'docker' 'virtualbox'  
   'firefox' 'google-chrome'
   'google-backup-and-sync' 
   'libreoffice'
-  'skype' 'ringcentral' 
+  'skype'
   'colloquy' 'slack' 'gitter' 
   'spotify'
   'veracrypt' 
