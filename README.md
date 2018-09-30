@@ -8,6 +8,13 @@ Personal configuration files.
 2. Checkout this repository to the home directory of the user with HTTPS
 3. Run *./setup.sh*
 
+## Post-setup
+
+1. Copy SSH keys to the .ssh directory
+2. Change permissions on SSH key files
+3. Install Web browser on local system
+4. Build working environments with Vagrant or Docker
+
 ## Vim plugins
 
 To install ALE:
