@@ -2,6 +2,12 @@
 
 Personal configuration files.
 
+## Usage
+
+1. Install Git on system
+2. Checkout this repository to the home directory of the user with HTTPS
+3. Run *./setup.sh*
+
 ## Vim plugins
 
 To install ALE:
@@ -17,9 +23,15 @@ Run these commands to install linters:
     pip3 install --user cfn-lint
     pip3 install --user yamllint
 
-## Applications that require manual installation
+## macOS: Applications that Require Installation
 
-- Delicious Library 2
+- Firefox
+- VirtualBox
+- Vagrant
 - Microsoft Remote Desktop
 - Pixelmator
 - Xcode
+- Xcode Command-line Tools
+
+Install Git separately if not using the Xcode Command-line Tools package.
+
