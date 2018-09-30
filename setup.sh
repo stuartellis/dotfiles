@@ -5,6 +5,28 @@ SAVE_DIR=$HOME/dotfiles_$(date "+%Y-%m-%d-%H-%M")
 
 mkdir -p "$SAVE_DIR"
 
+# SSH directory
+SSH_DIR=$HOME/.ssh
+if [ ! -d "$SSH_DIR" ]  ; then
+  mkdir -p "$SSH_DIR"
+  chmod 0770 "$SSH_DIR"
+fi
+
+# Project directories
+PROJECTS_DIR=$HOME/Projects
+if [ ! -d "$PROJECTS_DIR" ]  ; then
+  mkdir -p "$PROJECTS_DIR"
+fi
+if [ ! -d "$PROJECTS_DIR/src" ]  ; then
+  mkdir -p "$PROJECTS_DIR/src"
+fi
+if [ ! -d "$PROJECTS_DIR/src/github.com" ]  ; then
+  mkdir -p "$PROJECTS_DIR/src/github.com"
+fi
+if [ ! -d "$PROJECTS_DIR/src/gitlab.com" ]  ; then
+  mkdir -p "$PROJECTS_DIR/src/gitlab.com"
+fi
+
 # Bash
 if [ -e "$HOME/.bashrc" ] ; then
   mv "$HOME/.bashrc" "$SAVE_DIR" 
