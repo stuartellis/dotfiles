@@ -13,7 +13,8 @@ Personal configuration files.
 1. Copy SSH keys to the .ssh directory
 2. Change permissions on SSH key files
 3. Install Web browser on local system
-4. Build working environments with Vagrant or Docker
+4. Clone Git repositories for working environments
+5. Build working environments with Vagrant or Docker
 
 ## Vim plugins
 
