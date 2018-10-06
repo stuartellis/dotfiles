@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 DOTFILES_DIR=$HOME/dotfiles
 SAVE_DIR=$HOME/dotfiles_$(date "+%Y-%m-%d-%H-%M")
 
@@ -9,7 +11,7 @@ mkdir -p "$SAVE_DIR"
 SSH_DIR=$HOME/.ssh
 if [ ! -d "$SSH_DIR" ]  ; then
   mkdir -p "$SSH_DIR"
-  chmod 0770 "$SSH_DIR"
+  chmod 0700 "$SSH_DIR"
 fi
 
 # Project directories

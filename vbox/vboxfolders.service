@@ -1,0 +1,19 @@
+[Unit]
+Description=VirtualBox shared folders
+After=syslog.target network.target
+
+[Service]
+
+# Execute and immediately exit
+Type=oneshot
+
+# Run script to mount or unmount shared folders
+ExecStart=/usr/local/bin/vboxfolders.sh start
+ExecStop=/usr/local/bin/vboxfolders.sh stop
+
+# Unit is marked as active after completion, 
+# if exits with success code 
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
