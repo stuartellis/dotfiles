@@ -15,15 +15,15 @@ SHARES["ProjectsOnMac"]="/home/$USER_NAME/Projects"
 start() {
   for SHARE in "${!SHARES[@]}"
   do 
-    if [ ! -d "${SHARES[SHARE]}" ]
+    if [ ! -d "${SHARES[$SHARE]}" ]
     then
-      mkdir "${SHARES[SHARE]}"
-      chown "${USER_NAME}":"${USER_NAME}" "${SHARES[SHARE]}" 
-      chmod 0700 "${SHARES[SHARE]}"
+      mkdir "${SHARES[$SHARE]}"
+      chown "${USER_NAME}":"${USER_NAME}" "${SHARES[$SHARE]}" 
+      chmod 0700 "${SHARES[$SHARE]}"
     fi
-    if [ -d "${SHARES[SHARE]}" ]
+    if [ -d "${SHARES[$SHARE]}" ]
     then
-      mount -t vboxsf "${SHARE}" "${SHARES[SHARE]}" -o uid=${USER_UID},gid=${USER_GID}
+      mount -t vboxsf "${SHARE}" "${SHARES[$SHARE]}" -o uid=${USER_UID},gid=${USER_GID}
     fi
   done
 }
@@ -31,10 +31,10 @@ start() {
 stop() {  
   for SHARE in "${!SHARES[@]}"
   do 
-    if [ -d "${SHARES[SHARE]}" ]
+    if [ -d "${SHARES[$SHARE]}" ]
     then
-      umount "${SHARES[SHARE]}"
-      rmdir "${SHARES[SHARE]}"
+      umount "${SHARES[$SHARE]}"
+      rmdir "${SHARES[$SHARE]}"
     fi
   done
 }
