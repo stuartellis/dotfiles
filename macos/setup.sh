@@ -34,12 +34,12 @@ if [ -e "$HOME/.bashrc" ] ; then
   mv "$HOME/.bashrc" "$SAVE_DIR" 
 fi
 
-ln -s "$DOTFILES_DIR/bash/.bashrc" "$HOME/.bashrc"
+ln -s "$DOTFILES_DIR/macos/bash/.bashrc" "$HOME/.bashrc"
 
 if [ -e "$HOME/.bashrc" ] ; then
   mv "$HOME/.bash_profile" "$SAVE_DIR" 
 fi
-ln -s "$DOTFILES_DIR/bash/.bash_profile" "$HOME/.bash_profile"
+ln -s "$DOTFILES_DIR/macos/bash/.bash_profile" "$HOME/.bash_profile"
 
 # Git
 if [ -e "$HOME/.gitconfig" ] ; then
