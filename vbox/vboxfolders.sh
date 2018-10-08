@@ -5,7 +5,7 @@ set -e
 USER_UID=1000
 USER_GID=1000
 
-USER_NAME=`getent passwd "$USER_UID" | cut -d: -f1`
+USER_NAME=$(getent passwd "$USER_UID" | cut -d: -f1)
 
 declare -A SHARES
 SHARES["AWSOnMac"]="/home/$USER_NAME/.aws"
@@ -13,9 +13,9 @@ SHARES["SSHOnMac"]="/home/$USER_NAME/.ssh"
 SHARES["ProjectsOnMac"]="/home/$USER_NAME/Projects"
 
 start() {
-  for SHARE in "${SHARES[@]}"
+  for SHARE in "${!SHARES[@]}"
   do 
-    if ![ -d "${SHARES[SHARE]}" ]
+    if [ ! -d "${SHARES[SHARE]}" ]
     then
       mkdir "${SHARES[SHARE]}"
       chown "${USER_NAME}":"${USER_NAME}" "${SHARES[SHARE]}" 
@@ -29,9 +29,9 @@ start() {
 }
 
 stop() {  
-  for SHARE in "${SHARES[@]}"
+  for SHARE in "${!SHARES[@]}"
   do 
-    if [ -d "$SHARES[SHARE]" ]
+    if [ -d "${SHARES[SHARE]}" ]
     then
       umount "${SHARES[SHARE]}"
       rmdir "${SHARES[SHARE]}"
