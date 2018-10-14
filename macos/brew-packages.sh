@@ -8,7 +8,6 @@ CLI_PACKAGES=(
   'git' 'git-lfs'
   'hugo' 
   'restic'
-  'mysql@5.7' 
   'python3' 'pipenv'
   'neovim' 
   'node@8'
