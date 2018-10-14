@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 CLI_PACKAGES=(
   'bash-completion'
   'awscli' 'rclone'

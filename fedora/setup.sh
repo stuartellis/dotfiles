@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 DOTFILES_DIR=$HOME/dotfiles
 SAVE_DIR=$HOME/dotfiles_$(date "+%Y-%m-%d-%H-%M")

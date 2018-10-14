@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 SCRIPT_NAME=vboxfolders.sh
 UNIT_NAME=vboxfolders.service
