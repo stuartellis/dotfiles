@@ -2,11 +2,24 @@
 
 Personal configuration files.
 
-## Usage
+## Usage on Fedora
+
+1. Checkout this repository to the home directory of the user with HTTPS
+2. Run *./fedora/setup-homedir.sh*
+3. Run *sudo ./fedora/install-packages.sh*
+4. Run *./fedora/install-dev-tools.sh*
+
+### Shared Folders on VirtualBox
+
+1. Install shared folder support from RPM Fusion: *sudo dnf install akmod-VirtualBox*
+2. Reboot system: *sudo systemctl reboot*
+3. Run *./vbox/install-vboxfolders.sh*
+
+## Usage on macOS
 
 1. Install Git on system
 2. Checkout this repository to the home directory of the user with HTTPS
-3. Run *./setup.sh*
+3. Run *./macos/setup.sh*
 
 ## Post-setup
 
