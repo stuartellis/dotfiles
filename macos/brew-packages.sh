@@ -10,7 +10,7 @@ CLI_PACKAGES=(
   'restic'
   'python3' 'pipenv'
   'neovim' 
-  'node@8'
+  'node@10'
   'shellcheck'
 )
 
