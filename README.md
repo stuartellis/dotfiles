@@ -48,9 +48,13 @@ To install ALE:
 
 - Docker
 - Firefox
+- Google Backup & Sync
 - Node.js LTS
+- Apache Maven
+- AdoptOpenJDK JDK 11 
 - VirtualBox
 - Vagrant
+- VPN client
 - Pixelmator
 - Xcode
 - Xcode Command-line Tools
