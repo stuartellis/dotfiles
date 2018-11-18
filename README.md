@@ -29,6 +29,26 @@ Personal configuration files.
 4. Clone Git repositories for working environments
 5. Build working environments with Vagrant or Docker
 
+## macOS: Applications that Require Installation
+
+- Git
+- Neovim
+- Docker
+- Firefox
+- Google Backup & Sync
+- Node.js LTS
+- Apache Maven
+- AdoptOpenJDK JDK 11
+- VirtualBox
+- Vagrant
+- VPN client
+- Pixelmator
+
+Homebrew requires these products from Apple:
+
+- Xcode
+- Xcode Command-line Tools
+
 ## Editor support
 
 The code editor will require some tools for formatting and linting code. Run these commands to install linters:
@@ -43,24 +63,3 @@ To install ALE:
 
     mkdir -p ~/.local/share/nvim/site/pack/git-plugins/start
     git clone https://github.com/w0rp/ale.git ~/.local/share/nvim/site/pack/git-plugins/start/ale
-
-## macOS: Applications that Require Installation
-
-- Git
-- Neovim
-- Docker
-- Firefox
-- Google Backup & Sync
-- Node.js LTS
-- Apache Maven
-- AdoptOpenJDK JDK 11 
-- VirtualBox
-- Vagrant
-- VPN client
-- Pixelmator
-
-Homebrew requires these products from Apple:
-
-- Xcode
-- Xcode Command-line Tools
-
