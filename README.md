@@ -35,6 +35,7 @@ Personal configuration files.
 - Neovim
 - Docker
 - Firefox
+- Password manager
 - Google Backup & Sync
 - Node.js LTS
 - Apache Maven
