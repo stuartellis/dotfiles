@@ -46,6 +46,8 @@ To install ALE:
 
 ## macOS: Applications that Require Installation
 
+- Git
+- Neovim
 - Docker
 - Firefox
 - Google Backup & Sync
@@ -56,7 +58,9 @@ To install ALE:
 - Vagrant
 - VPN client
 - Pixelmator
+
+Homebrew requires these products from Apple:
+
 - Xcode
 - Xcode Command-line Tools
 
-Install Git separately if not using the Xcode Command-line Tools package.
