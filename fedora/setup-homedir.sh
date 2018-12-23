@@ -39,6 +39,10 @@ fi
 
 ln -s "$DOTFILES_DIR/gitconfig/.gitexclusions.txt" "$HOME/.gitexclusions.txt"
 
+# Vim
+
+ln -s "$DOTFILES_DIR/vim/.vimrc" "$HOME/.vimrc"
+
 # Neovim 
 NVIM_DIR=$HOME/.config/nvim
 if [ ! -d "$NVIM_DIR" ]  ; then
