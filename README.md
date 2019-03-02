@@ -29,14 +29,26 @@ Personal configuration files.
 4. Clone Git repositories for working environments
 5. Build working environments with Vagrant or Docker
 
+## Tools
+
+- Shell: Bash
+- Version control: Git
+- Web browser: Firefox
+- Text editor: VSCodium
+- Container management: Docker
+- Programming language: Python
+- File sync and share
+- Password manager 
+- VPN client
+
 ## macOS: Applications that Require Installation
 
 - Git
-- Neovim
 - Docker
 - Firefox
 - Password manager
 - Google Backup & Sync
+- Python 3
 - Node.js LTS
 - Apache Maven
 - AdoptOpenJDK JDK 11
