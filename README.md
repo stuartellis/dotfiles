@@ -27,52 +27,5 @@ Personal configuration files.
 2. Change permissions on SSH key files
 3. Install Web browser on local system
 4. Clone Git repositories for working environments
-5. Build working environments with Vagrant or Docker
+5. Build working environments with Docker
 
-## Tools
-
-- Shell: Bash
-- Version control: Git
-- Web browser: Firefox
-- Text editor: VSCodium
-- Container management: Docker
-- Programming language: Python
-- File sync and share
-- Password manager 
-- VPN client
-
-## macOS: Applications that Require Installation
-
-- Git
-- Docker
-- Firefox
-- Password manager
-- Google Backup & Sync
-- Python 3
-- Node.js LTS
-- Apache Maven
-- AdoptOpenJDK JDK 11
-- VirtualBox
-- Vagrant
-- VPN client
-- Pixelmator
-
-Homebrew requires these products from Apple:
-
-- Xcode
-- Xcode Command-line Tools
-
-## Editor support
-
-The code editor will require some tools for formatting and linting code. Run these commands to install linters:
-
-    npm -g install prettier
-    pip3 install --user cfn-lint
-    pip3 install --user yamllint
-
-### Vim plugins
-
-To install ALE:
-
-    mkdir -p ~/.local/share/nvim/site/pack/git-plugins/start
-    git clone https://github.com/w0rp/ale.git ~/.local/share/nvim/site/pack/git-plugins/start/ale
