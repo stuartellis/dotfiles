@@ -3,29 +3,24 @@
 set -euo pipefail
 
 CLI_PACKAGES=(
-  'bash-completion'
-  'awscli' 'rclone'
-  'git' 'git-lfs'
-  'hugo' 
-  'restic'
-  'python3' 'pipenv'
-  'neovim' 
+  'docker'
+  'git'
+  'hugo'
+  'kubernetes-cli' 
+  'maven'
+  'python3' 'pipenv' 
   'node@10'
   'shellcheck'
 )
 
-GUI_PACKAGES=(
-  'calibre' 'etcher'
-  'amazon-workspaces' 
-  'docker' 'virtualbox'  
+CASK_PACKAGES=(
+  'adoptopenjdk11'
   'firefox' 'google-chrome'
   'google-backup-and-sync' 
   'libreoffice'
-  'skype'
-  'colloquy' 'slack' 'gitter' 
-  'spotify'
-  'veracrypt' 
-  'vienna'
+  'minikube'
+  'vscodium'
+  'virtualbox'  
 )
 
 brew update
@@ -35,7 +30,7 @@ do
   brew install "$each"
 done
 
-for each in "${GUI_PACKAGES[@]}"
+for each in "${CASK_PACKAGES[@]}"
 do
   brew cask install "$each"
 done
