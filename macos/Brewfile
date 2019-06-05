@@ -1,0 +1,26 @@
+# Package repositories
+tap "adoptopenjdk/openjdk"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+
+# Homebrew Packages
+brew "docker"
+brew "git"
+brew "hugo"
+brew "kubernetes-cli"
+brew "kubernetes-helm"
+brew "maven"
+brew "node@10"
+brew "python"
+brew "pipenv"
+brew "shellcheck"
+brew "skaffold"
+brew "terraform"
+brew "zsh"
+
+# Cask packages
+cask "minikube"
+cask "virtualbox"
+cask "vscodium"
+cask "adoptopenjdk/openjdk/adoptopenjdk11"

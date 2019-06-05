@@ -17,9 +17,11 @@ Personal configuration files.
 
 ## Usage on macOS
 
-1. Install Git on system
-2. Checkout this repository to the home directory of the user with HTTPS
-3. Run _./macos/setup.sh_
+1. Checkout this repository to the home directory of the user with HTTPS
+2. Run _./macos/setup-homedir.sh_
+3. Install Xcode Command-line Tools: _xcode-select --install_
+4. Install [Homebrew](https://brew.sh/)
+5. Change working directory to _./macos_ and run _brew bundle_
 
 ## Post-setup
 
