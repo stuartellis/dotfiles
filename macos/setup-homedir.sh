@@ -29,6 +29,13 @@ if [ ! -d "$PROJECTS_DIR/src/gitlab.com" ]  ; then
   mkdir -p "$PROJECTS_DIR/src/gitlab.com"
 fi
 
+# zsh
+if [ -e "$HOME/.zshrc" ] ; then
+  mv "$HOME/.zshrc" "$SAVE_DIR" 
+fi
+
+ln -s "$DOTFILES_DIR/macos/zsh/.zshrc" "$HOME/.zshrc
+
 # Bash
 if [ -e "$HOME/.bashrc" ] ; then
   mv "$HOME/.bashrc" "$SAVE_DIR" 
