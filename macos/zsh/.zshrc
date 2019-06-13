@@ -10,4 +10,8 @@ export EDITOR="vscodium -w"
 export AWS_PROFILE=default
 
 # PATH
-export PATH="$HOME/.local/bin:$HOME/Library/Python/3.7/bin:/usr/local/opt/node@10/bin:/opt/puppetlabs/pdk/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/Library/Python/3.7/bin:/usr/local/opt/node@10/bin:/opt/puppetlabs/pdk/bin:$HOME/.jenv/bin:$PATH"
+
+# Activate jenv
+eval "$(jenv init -)"
+
