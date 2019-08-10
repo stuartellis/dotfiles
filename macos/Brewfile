@@ -22,6 +22,7 @@ brew "zsh"
 
 # Cask packages
 cask "docker"
+cask "libreoffice"
 cask "minikube"
 cask "virtualbox"
 cask "vscodium"
