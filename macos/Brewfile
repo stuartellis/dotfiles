@@ -5,7 +5,6 @@ tap "homebrew/cask"
 tap "homebrew/core"
 
 # Homebrew Packages
-brew "docker"
 brew "git"
 brew "hugo"
 brew "jenv"
@@ -22,6 +21,7 @@ brew "terraform"
 brew "zsh"
 
 # Cask packages
+cask "docker"
 cask "minikube"
 cask "virtualbox"
 cask "vscodium"
