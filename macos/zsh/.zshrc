@@ -16,7 +16,7 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # Text editor
-export EDITOR="vscodium -w" 
+export EDITOR="code -w" 
 
 # Amazon Web Services profile
 export AWS_PROFILE=default
