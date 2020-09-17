@@ -22,5 +22,14 @@ export EDITOR="code -w"
 export AWS_PROFILE=default
 
 # PATH
-export PATH="$HOME/.local/bin:$HOME/Library/Python/3.7/bin:/usr/local/opt/node@12/bin:$PATH"
+export PATH="$HOME/Library/Python/3.8/bin:$HOME/go/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/.jenv/bin:/usr/local/lib/apache-maven-3.6.3/bin:/usr/local/opt/node@12/bin:$PATH"
+
+# jEnv
+# eval "$(jenv init -)"
+
+# Enable Bash-compatible autocompletion
+autoload bashcompinit && bashcompinit
+
+# Runs auto-completion for AWS CLI
+complete -C '/usr/local/bin/aws_completer' aws
 
