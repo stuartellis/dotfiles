@@ -6,6 +6,9 @@ prompt pure
 
 ### Environment Variables
 
+# Add items to PATH
+export PATH="/usr/local/opt/node@14/bin:$PATH"
+
 # Text editor
 export EDITOR="code -w" 
 
