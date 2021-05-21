@@ -1,35 +1,14 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=50000
-setopt appendhistory autocd extendedglob nomatch notify
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/Users/stuartellis/.zshrc'
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+### Enable pure theme: https://github.com/sindresorhus/pure
 
-# Load Pure theme for zsh: https://github.com/sindresorhus/pure
 autoload -U promptinit; promptinit
 prompt pure
+
+### Environment Variables
 
 # Text editor
 export EDITOR="code -w" 
 
 # Amazon Web Services profile
-export AWS_PROFILE=default
-
-# PATH
-export PATH="$HOME/Library/Python/3.8/bin:$HOME/go/bin:$HOME/.poetry/bin:$HOME/.local/bin:$HOME/.jenv/bin:/usr/local/lib/apache-maven-3.6.3/bin:/usr/local/opt/node@12/bin:$PATH"
-
-# jEnv
-# eval "$(jenv init -)"
-
-# Enable Bash-compatible autocompletion
-autoload bashcompinit && bashcompinit
-
-# Runs auto-completion for AWS CLI
-complete -C '/usr/local/bin/aws_completer' aws
+export AWS_PROFILE=labs
 
