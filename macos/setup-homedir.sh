@@ -14,6 +14,13 @@ if [ ! -d "$SSH_DIR" ]  ; then
   chmod 0700 "$SSH_DIR"
 fi
 
+# .secrets directory
+SECRETS_DIR=$HOME/.secrets
+if [ ! -d "$SECRETS_DIR" ]  ; then
+  mkdir -p "$SECRETS_DIR"
+  chmod 0700 "$SECRETS_DIR"
+fi
+
 # Project directories
 PROJECTS_DIR=$HOME/Projects
 if [ ! -d "$PROJECTS_DIR" ]  ; then
