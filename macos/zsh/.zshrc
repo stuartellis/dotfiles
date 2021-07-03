@@ -21,4 +21,8 @@ export AWS_PROFILE=labs
 
 alias awsume=". awsume"
 
+### Aliases
+
+alias g="git"
+alias n="node"
 
