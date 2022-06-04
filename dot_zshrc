@@ -1,0 +1,4 @@
+
+# Text editor
+export EDITOR="codium -w"
+
