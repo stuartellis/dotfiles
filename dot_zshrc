@@ -2,3 +2,6 @@
 # Text editor
 export EDITOR="codium -w"
 
+# asdf version manager: https://asdf-vm.com/
+. /usr/local/opt/asdf/libexec/asdf.sh
+
