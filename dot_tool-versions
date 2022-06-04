@@ -1,2 +1,4 @@
 nodejs 16.15.1
 python 3.10.4
+terraform 1.2.2
+pre-commit 2.19.0
