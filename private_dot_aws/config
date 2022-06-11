@@ -1,0 +1,6 @@
+[profile sel-np]
+region = eu-west-1
+
+[profile se-origin]
+region = eu-west-2
+
