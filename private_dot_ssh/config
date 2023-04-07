@@ -1,7 +1,9 @@
-Host 192.168.1.253
+Host 192.168.1.152
+  HostName 192.168.1.152
+  User stuartellis
   ForwardAgent yes
 
 # SSH over Session Manager
-host i-* mi-*
+Host i-* mi-*
   ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
 
