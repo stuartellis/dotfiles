@@ -17,9 +17,10 @@ add-awscli:
     #!/usr/bin/env sh
     set -eu
     AWSCLI_DOWNLOADS_URL="https://awscli.amazonaws.com/awscli-exe-{{ os() }}-{{ arch() }}.zip"
-    curl $AWSCLI_DOWNLOADS_URL -o "awscliv2.zip"
+    curl -S -s $AWSCLI_DOWNLOADS_URL -o "awscliv2.zip"
     unzip awscliv2.zip
-    sudo ./aws/install
+    sudo ./aws/install --update
+    rm -fr aws awscliv2.zip    
 
 # Install Mani
 add-mani:
