@@ -12,6 +12,15 @@ add-ansible: add-pipx
    pipx install ansible-core
    pipx inject ansible-core boto3
 
+# Install AWS CLI
+add-awscli:
+    #!/usr/bin/env sh
+    set -eu
+    AWSCLI_DOWNLOADS_URL="https://awscli.amazonaws.com/awscli-exe-{{ os() }}-{{ arch() }}.zip"
+    curl $AWSCLI_DOWNLOADS_URL -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+
 # Install Mani
 add-mani:
     #!/usr/bin/env sh
