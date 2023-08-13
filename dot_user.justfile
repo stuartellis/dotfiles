@@ -7,6 +7,11 @@ sys-info:
     @echo "OS Type: {{ os_family() }}"
     @echo "OS: {{ os() }}"
 
+# Install Ansible
+add-ansible: add-pipx
+   pipx install ansible-core
+   pipx inject ansible-core boto3
+
 # Install Mani
 add-mani:
     #!/usr/bin/env sh
@@ -17,6 +22,11 @@ add-mani:
     tar xzf mani.tar.gz
     cp mani $HOME/bin
     rm LICENSE mani*
+
+# Install pipx
+add-pipx:
+    python3 -m pip install --user pipx
+    python3 -m pipx ensurepath
 
 # Remove Mani
 rm-mani:
