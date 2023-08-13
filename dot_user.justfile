@@ -14,7 +14,6 @@ add-mani:
     MANI_DOWNLOADS_URL=https://github.com/alajmo/mani/releases/download/v{{ mani_version }}/mani_{{ mani_version }}_{{ os() }}_{{ go_arch }}.tar.gz
     mkdir -p $HOME/bin
     curl -S -s -L $MANI_DOWNLOADS_URL > mani.tar.gz
-    cp mani.tar.gz $HOME/Downloads
     tar xzf mani.tar.gz
     cp mani $HOME/bin
     rm LICENSE mani*
