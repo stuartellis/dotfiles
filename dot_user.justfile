@@ -1,5 +1,6 @@
 go_arch := if arch() == 'aarch64' { 'arm64' } else { 'amd64' }
 mani_version := '0.25.0'
+aws_vault_version := '7.2.0'
 
 # System info
 sys-info:
@@ -22,6 +23,17 @@ add-awscli:
     sudo ./aws/install --update
     rm -fr aws awscliv2.zip    
 
+# Install aws-vault
+add-aws-vault:
+    #!/usr/bin/env sh
+    set -eu
+    AWS_VAULT_DOWNLOADS_URL=https://github.com/99designs/aws-vault/releases/download/v{{ aws_vault_version }}/aws-vault-{{ os() }}-{{ go_arch }}
+    mkdir -p $HOME/bin
+    curl -S -s -L $AWS_VAULT_DOWNLOADS_URL > aws-vault
+    cp aws-vault $HOME/bin
+    chmod 0700 $HOME/bin/aws-vault
+    rm aws-vault*
+
 # Install Mani
 add-mani:
     #!/usr/bin/env sh
@@ -37,6 +49,10 @@ add-mani:
 add-pipx:
     python3 -m pip install --user pipx
     python3 -m pipx ensurepath
+
+# Remove aws-vault
+rm-aws-vault:
+    @rm -f $HOME/bin/aws-vault
 
 # Remove Mani
 rm-mani:
