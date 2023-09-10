@@ -1,12 +1,17 @@
 
-# Add Rust executables to $PATH
+# Add $HOME/bin/ directory to $PATH if present
+if test -d "$HOME/bin"
+	fish_add_path --path --append "$HOME/bin"
+end
+
+# Add Rust executables directory to $PATH if present
 if test -d "$HOME/.cargo/bin"
   fish_add_path --path --append "$HOME/.cargo/bin"
 end
 
-# Add local bin/ directory to $PATH
-if test -d "$HOME/bin"
-	fish_add_path --path --append "$HOME/bin"
+# Add .local/bin/ directory to $PATH if present
+if test -d "$HOME/.local/bin"
+	fish_add_path --path --append "$HOME/.local/bin"
 end
 
 if status is-interactive
