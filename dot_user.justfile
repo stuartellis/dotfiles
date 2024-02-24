@@ -1,59 +1,111 @@
-go_arch := if arch() == 'aarch64' { 'arm64' } else { 'amd64' }
+chezmoi_version := '2.46.1'
+hatch_version := '1.9.3'
 mani_version := '0.25.0'
-aws_vault_version := '7.2.0'
+backups_dir := join(home_directory(), 'backups')
+downloads_dir := if os() == 'linux' { join(home_directory(), 'Downloads') } else { if os() == "macos" { join(home_directory(), 'Downloads') } else { if os() == "windows" { join(home_directory(), 'Downloads') } else { error('Unsupported operating system') } } }
+go_arch := if arch() == 'aarch64' { 'arm64' } else { if arch() == 'x86_64' { 'amd64' } else { error('Unsupported operating system') } }
+rust_os := if os() == 'linux' { 'linux-gnu' } else { if os() == "macos" { 'apple-darwin' } else { if os() == "windows" { 'windows-msvc' } else { error('Unsupported operating system') } } }
 
-# System info
-sys-info:
-    @echo "CPU Architecture: {{ arch() }}"
-    @echo "OS Type: {{ os_family() }}"
-    @echo "OS: {{ os() }}"
+# List available recipes
+default:
+    @just --list -f "{{ home_directory() }}/.user.justfile"
+
+# Display system information
+system-info:
+    @echo "CPU architecture (Rust): {{ arch() }}"
+    @echo "CPU architecture (Go): {{ go_arch }}"
+    @echo "Operating system type: {{ os_family() }}"
+    @echo "Operating system: {{ os() }}"
+    @echo "Operating system (Rust): {{ rust_os }}"
+    @echo "Home directory: {{ home_directory() }}"
+    @echo "Backups directory: {{ backups_dir }}"    
+    @echo "Executables directory: {{ executable_directory() }}"
+    @echo "Downloads directory: {{ downloads_dir }}"
 
 # Install Ansible
 add-ansible: add-pipx
-   pipx install ansible-core
-   pipx inject ansible-core boto3
+    @pipx --quiet install ansible-core
+    @pipx --quiet inject ansible-core boto3
 
 # Install AWS CLI
 add-awscli:
     #!/usr/bin/env sh
     set -eu
-    AWSCLI_DOWNLOADS_URL="https://awscli.amazonaws.com/awscli-exe-{{ os() }}-{{ arch() }}.zip"
-    curl -S -s $AWSCLI_DOWNLOADS_URL -o "awscliv2.zip"
+    cd "{{ downloads_dir }}"
+    AWSCLI_DOWNLOAD_URL="https://awscli.amazonaws.com/awscli-exe-{{ os() }}-{{ arch() }}.zip"
+    curl -S -s $AWSCLI_DOWNLOAD_URL -o "awscliv2.zip"
     unzip awscliv2.zip
     sudo ./aws/install --update
-    rm -fr aws awscliv2.zip    
+    rm -f aws awscliv2.zip
 
-# Install aws-vault
-add-aws-vault:
+# Install Chezmoi
+add-chezmoi:
     #!/usr/bin/env sh
     set -eu
-    AWS_VAULT_DOWNLOADS_URL=https://github.com/99designs/aws-vault/releases/download/v{{ aws_vault_version }}/aws-vault-{{ os() }}-{{ go_arch }}
-    mkdir -p $HOME/bin
-    curl -S -s -L $AWS_VAULT_DOWNLOADS_URL > aws-vault
-    cp aws-vault $HOME/bin
-    chmod 0700 $HOME/bin/aws-vault
-    rm aws-vault*
+    cd "{{ downloads_dir }}"
+    CHEZMOI_DOWNLOAD_URL=https://github.com/twpayne/chezmoi/releases/download/v{{ chezmoi_version }}/chezmoi_{{ chezmoi_version }}_{{ os() }}_{{ go_arch }}.tar.gz    
+    mkdir -p "{{ executable_directory() }}"
+    curl -S -s -L $CHEZMOI_DOWNLOAD_URL > chezmoi.tar.gz
+    tar xzf chezmoi.tar.gz chezmoi
+    cp chezmoi {{ join(executable_directory(), 'chezmoi') }}
+    rm -f chezmoi chezmoi.tar.gz
+
+# Install Hatch
+add-hatch:
+    #!/usr/bin/env sh
+    set -eu
+    cd "{{ downloads_dir }}"
+    HATCH_DOWNLOAD_URL=https://github.com/pypa/hatch/releases/download/hatch-v{{ hatch_version }}/hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }}.tar.gz    
+    mkdir -p "{{ executable_directory() }}"
+    curl -S -s -L $HATCH_DOWNLOAD_URL > hatch.tar.gz
+    tar xzf hatch.tar.gz
+    cp hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }} {{ join(executable_directory(), 'hatch') }}
+    rm -f hatch.tar.gz hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }}
 
 # Install Mani
 add-mani:
     #!/usr/bin/env sh
     set -eu
-    MANI_DOWNLOADS_URL=https://github.com/alajmo/mani/releases/download/v{{ mani_version }}/mani_{{ mani_version }}_{{ os() }}_{{ go_arch }}.tar.gz
-    mkdir -p $HOME/bin
-    curl -S -s -L $MANI_DOWNLOADS_URL > mani.tar.gz
+    cd "{{ downloads_dir }}"
+    MANI_DOWNLOAD_URL=https://github.com/alajmo/mani/releases/download/v{{ mani_version }}/mani_{{ mani_version }}_{{ os() }}_{{ go_arch }}.tar.gz
+    mkdir -p "{{ executable_directory() }}"
+    curl -S -s -L $MANI_DOWNLOAD_URL > mani.tar.gz
     tar xzf mani.tar.gz
-    cp mani $HOME/bin
+    cp mani "{{ executable_directory() }}"
     rm LICENSE mani*
 
 # Install pipx
 add-pipx:
-    python3 -m pip install --user pipx
-    python3 -m pipx ensurepath
+    @python3 -m pip install --user pipx
+    @python3 -m pipx ensurepath
 
-# Remove aws-vault
-rm-aws-vault:
-    @rm -f $HOME/bin/aws-vault
+# Backup Joplin
+backup-joplin:
+    #!/usr/bin/env sh
+    set -eu
+    JOPLIN_BACKUPS_DIR="{{ backups_dir }}/joplin-backups"
+    CONFIG_DIR="{{ config_directory() }}"
+    mkdir -p $JOPLIN_BACKUPS_DIR
+    BACKUP_TIMESTAMP=$(date -u +"%Y-%m-%dT%H-%M-%SZ")
+    zip -r $JOPLIN_BACKUPS_DIR/joplin-backup-$BACKUP_TIMESTAMP.zip $CONFIG_DIR/joplin-desktop
+
+# Remove Ansible
+rm-ansible:
+    @pipx --quiet uninstall ansible-core
+
+# Remove Chezmoi
+rm-chezmoi:
+    @rm -f "{{ join(executable_directory(), 'chezmoi') }}"
+
+# Remove Hatch
+rm-hatch:
+    @rm -f "{{ join(executable_directory(), 'hatch') }}"
 
 # Remove Mani
 rm-mani:
-    @rm -f $HOME/bin/mani
+    @rm -f "{{ join(executable_directory(), 'mani') }}"
+
+# Remove pipx
+rm-pipx:
+    @pipx uninstall-all
+    @python3 -m pip uninstall -qy pipx
