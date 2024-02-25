@@ -31,48 +31,60 @@ add-ansible: add-pipx
 add-awscli:
     #!/usr/bin/env sh
     set -eu
-    cd "{{ downloads_dir }}"
-    AWSCLI_DOWNLOAD_URL="https://awscli.amazonaws.com/awscli-exe-{{ os() }}-{{ arch() }}.zip"
-    curl -S -s $AWSCLI_DOWNLOAD_URL -o "awscliv2.zip"
+    $TEMP_DOWNLOAD_DIR="{{ downloads_dir }}/tmp/awscli"
+    mkdir -p $TEMP_DOWNLOAD_DIR
+    cd $TEMP_DOWNLOAD_DIR
+    APP_DOWNLOAD_URL="https://awscli.amazonaws.com/awscli-exe-{{ os() }}-{{ arch() }}.zip"
+    curl -S -s $APP_DOWNLOAD_URL -o "awscliv2.zip"
     unzip awscliv2.zip
     sudo ./aws/install --update
-    rm -f aws awscliv2.zip
+    cd "{{ downloads_dir }}/tmp"
+    rm -fr $TEMP_DOWNLOAD_DIR
 
 # Install Chezmoi
 add-chezmoi:
     #!/usr/bin/env sh
     set -eu
-    cd "{{ downloads_dir }}"
-    CHEZMOI_DOWNLOAD_URL=https://github.com/twpayne/chezmoi/releases/download/v{{ chezmoi_version }}/chezmoi_{{ chezmoi_version }}_{{ os() }}_{{ go_arch }}.tar.gz    
-    mkdir -p "{{ executable_directory() }}"
-    curl -S -s -L $CHEZMOI_DOWNLOAD_URL > chezmoi.tar.gz
+    TEMP_DOWNLOAD_DIR="{{ downloads_dir }}/tmp/chezmoi"
+    mkdir -p $TEMP_DOWNLOAD_DIR
+    cd $TEMP_DOWNLOAD_DIR
+    APP_DOWNLOAD_URL=https://github.com/twpayne/chezmoi/releases/download/v{{ chezmoi_version }}/chezmoi_{{ chezmoi_version }}_{{ os() }}_{{ go_arch }}.tar.gz    
+    curl -S -s -L $APP_DOWNLOAD_URL > chezmoi.tar.gz
     tar xzf chezmoi.tar.gz chezmoi
+    mkdir -p "{{ executable_directory() }}"
     cp chezmoi {{ join(executable_directory(), 'chezmoi') }}
-    rm -f chezmoi chezmoi.tar.gz
+    cd "{{ downloads_dir }}/tmp"
+    rm -fr $TEMP_DOWNLOAD_DIR
 
 # Install Hatch
 add-hatch:
     #!/usr/bin/env sh
     set -eu
-    cd "{{ downloads_dir }}"
-    HATCH_DOWNLOAD_URL=https://github.com/pypa/hatch/releases/download/hatch-v{{ hatch_version }}/hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }}.tar.gz    
+    TEMP_DOWNLOAD_DIR="{{ downloads_dir }}/tmp/hatch"
+    mkdir -p $TEMP_DOWNLOAD_DIR
+    cd $TEMP_DOWNLOAD_DIR
+    APP_DOWNLOAD_URL=https://github.com/pypa/hatch/releases/download/hatch-v{{ hatch_version }}/hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }}.tar.gz    
+    curl -S -s -L $APP_DOWNLOAD_URL > hatch.tar.gz
+    tar xzf hatch.tar.gz hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }} 
     mkdir -p "{{ executable_directory() }}"
-    curl -S -s -L $HATCH_DOWNLOAD_URL > hatch.tar.gz
-    tar xzf hatch.tar.gz
     cp hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }} {{ join(executable_directory(), 'hatch') }}
-    rm -f hatch.tar.gz hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }}
+    cd "{{ downloads_dir }}/tmp"
+    rm -fr $TEMP_DOWNLOAD_DIR
 
 # Install Mani
 add-mani:
     #!/usr/bin/env sh
     set -eu
-    cd "{{ downloads_dir }}"
-    MANI_DOWNLOAD_URL=https://github.com/alajmo/mani/releases/download/v{{ mani_version }}/mani_{{ mani_version }}_{{ os() }}_{{ go_arch }}.tar.gz
+    TEMP_DOWNLOAD_DIR="{{ downloads_dir }}/tmp/mani"
+    mkdir -p $TEMP_DOWNLOAD_DIR
+    cd $TEMP_DOWNLOAD_DIR
+    APP_DOWNLOAD_URL=https://github.com/alajmo/mani/releases/download/v{{ mani_version }}/mani_{{ mani_version }}_{{ os() }}_{{ go_arch }}.tar.gz
+    curl -S -s -L $APP_DOWNLOAD_URL > mani.tar.gz
+    tar xzf mani.tar.gz mani
     mkdir -p "{{ executable_directory() }}"
-    curl -S -s -L $MANI_DOWNLOAD_URL > mani.tar.gz
-    tar xzf mani.tar.gz
     cp mani "{{ executable_directory() }}"
-    rm LICENSE mani*
+    cd "{{ downloads_dir }}/tmp"
+    rm -fr $TEMP_DOWNLOAD_DIR
 
 # Install pipx
 add-pipx:
