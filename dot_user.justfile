@@ -7,7 +7,7 @@ go_arch := if arch() == 'aarch64' { 'arm64' } else { if arch() == 'x86_64' { 'am
 rust_os := if os() == 'linux' { 'linux-gnu' } else { if os() == "macos" { 'apple-darwin' } else { if os() == "windows" { 'windows-msvc' } else { error('Unsupported operating system') } } }
 
 # List available recipes
-default:
+help:
     @just --list -f "{{ home_directory() }}/.user.justfile"
 
 # Display system information
