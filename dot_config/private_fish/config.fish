@@ -1,17 +1,12 @@
 
-# Add $HOME/bin/ directory to $PATH if present
-if test -d "$HOME/bin"
-	fish_add_path --path --append "$HOME/bin"
+# Add .local/bin/ directory to $PATH if present
+if test -d "$HOME/.local/bin"
+        fish_add_path --path --append "$HOME/.local/bin"
 end
 
 # Add Rust executables directory to $PATH if present
 if test -d "$HOME/.cargo/bin"
   fish_add_path --path --append "$HOME/.cargo/bin"
-end
-
-# Add .local/bin/ directory to $PATH if present
-if test -d "$HOME/.local/bin"
-	fish_add_path --path --append "$HOME/.local/bin"
 end
 
 if status is-interactive
@@ -21,8 +16,8 @@ if status is-interactive
     command -q code && set -gx EDITOR code
 
     # Add abbr to call recipes in user Justfile by typing ".j"
-    if test -x '/usr/bin/just'
-      abbr --add .j just --justfile ~/.user.justfile --working-directory .
+    if command -s just > /dev/null
+      abbr --add .j just --justfile $HOME/.user.justfile --working-directory .
     end
 
 end
