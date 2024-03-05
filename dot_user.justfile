@@ -1,6 +1,8 @@
 chezmoi_version := '2.46.1'
 hatch_version := '1.9.3'
 mani_version := '0.25.0'
+trivy_version := '0.49.1'
+container_exe := 'podman'
 backups_dir := join(home_directory(), 'backups')
 downloads_dir := if os() == 'linux' { join(home_directory(), 'Downloads') } else { if os() == "macos" { join(home_directory(), 'Downloads') } else { if os() == "windows" { join(home_directory(), 'Downloads') } else { error('Unsupported operating system') } } }
 go_arch := if arch() == 'aarch64' { 'arm64' } else { if arch() == 'x86_64' { 'amd64' } else { error('Unsupported operating system') } }
@@ -56,21 +58,6 @@ add-chezmoi:
     cd "{{ downloads_dir }}/tmp"
     rm -fr $TEMP_DOWNLOAD_DIR
 
-# Install Hatch
-add-hatch:
-    #!/usr/bin/env sh
-    set -eu
-    TEMP_DOWNLOAD_DIR="{{ downloads_dir }}/tmp/hatch"
-    mkdir -p $TEMP_DOWNLOAD_DIR
-    cd $TEMP_DOWNLOAD_DIR
-    APP_DOWNLOAD_URL=https://github.com/pypa/hatch/releases/download/hatch-v{{ hatch_version }}/hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }}.tar.gz    
-    curl -S -s -L $APP_DOWNLOAD_URL > hatch.tar.gz
-    tar xzf hatch.tar.gz hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }} 
-    mkdir -p "{{ executable_directory() }}"
-    cp hatch-{{ hatch_version }}-{{ arch() }}-unknown-{{ rust_os }} {{ join(executable_directory(), 'hatch') }}
-    cd "{{ downloads_dir }}/tmp"
-    rm -fr $TEMP_DOWNLOAD_DIR
-
 # Install Mani
 add-mani:
     #!/usr/bin/env sh
@@ -91,6 +78,21 @@ add-pipx:
     @python3 -m pip install --user pipx
     @python3 -m pipx ensurepath
 
+# Install Trivy
+add-trivy:
+    #!/usr/bin/env sh
+    set -eu
+    TEMP_DOWNLOAD_DIR="{{ downloads_dir }}/tmp/trivy"
+    mkdir -p $TEMP_DOWNLOAD_DIR
+    cd $TEMP_DOWNLOAD_DIR   
+    APP_DOWNLOAD_URL=https://github.com/aquasecurity/trivy/releases/download/v{{ trivy_version }}/trivy_{{ trivy_version }}_Linux-64bit.tar.gz
+    curl -S -s -L $APP_DOWNLOAD_URL > trivy.tar.gz
+    tar xzf trivy.tar.gz trivy
+    mkdir -p "{{ executable_directory() }}"
+    cp trivy "{{ executable_directory() }}"
+    cd "{{ downloads_dir }}/tmp"
+    rm -fr $TEMP_DOWNLOAD_DIR
+
 # Backup Joplin
 backup-joplin:
     #!/usr/bin/env sh
@@ -101,6 +103,11 @@ backup-joplin:
     BACKUP_TIMESTAMP=$(date -u +"%Y-%m-%dT%H-%M-%SZ")
     zip -r $JOPLIN_BACKUPS_DIR/joplin-backup-$BACKUP_TIMESTAMP.zip $CONFIG_DIR/joplin-desktop
 
+# Remove obsolete containers and images
+clean-oci:
+    @{{ container_exe }} container prune -f
+    @{{ container_exe }} image prune -f
+
 # Remove Ansible
 rm-ansible:
     @pipx --quiet uninstall ansible-core
@@ -108,10 +115,6 @@ rm-ansible:
 # Remove Chezmoi
 rm-chezmoi:
     @rm -f "{{ join(executable_directory(), 'chezmoi') }}"
-
-# Remove Hatch
-rm-hatch:
-    @rm -f "{{ join(executable_directory(), 'hatch') }}"
 
 # Remove Mani
 rm-mani:
@@ -121,3 +124,7 @@ rm-mani:
 rm-pipx:
     @pipx uninstall-all
     @python3 -m pip uninstall -qy pipx
+
+# Remove Trivy
+rm-trivy:
+    @rm -f "{{ join(executable_directory(), 'trivy') }}"
