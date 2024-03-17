@@ -4,11 +4,6 @@ if test -d "$HOME/.local/bin"
         fish_add_path --path --append "$HOME/.local/bin"
 end
 
-# Add Rust executables directory to $PATH if present
-if test -d "$HOME/.cargo/bin"
-  fish_add_path --path --append "$HOME/.cargo/bin"
-end
-
 if status is-interactive
 
     # Use Visual Studio Code as editor if available
