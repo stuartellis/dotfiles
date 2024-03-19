@@ -58,6 +58,10 @@ add-chezmoi:
     cd "{{ downloads_dir }}/tmp"
     rm -fr $TEMP_DOWNLOAD_DIR
 
+# Install Copier
+add-copier: add-pipx
+    @pipx --quiet install copier
+
 # Install Mani
 add-mani:
     #!/usr/bin/env sh
@@ -77,6 +81,10 @@ add-mani:
 add-pipx:
     @python3 -m pip install --user pipx
     @python3 -m pipx ensurepath
+
+# Install pre-commit
+add-pre-commit: add-pipx
+    @pipx --quiet install pre-commit
 
 # Install Trivy
 add-trivy:
@@ -116,6 +124,10 @@ rm-ansible:
 rm-chezmoi:
     @rm -f "{{ join(executable_directory(), 'chezmoi') }}"
 
+# Remove Copier
+rm-copier:
+    @pipx --quiet uninstall copier
+
 # Remove Mani
 rm-mani:
     @rm -f "{{ join(executable_directory(), 'mani') }}"
@@ -124,6 +136,10 @@ rm-mani:
 rm-pipx:
     @pipx uninstall-all
     @python3 -m pip uninstall -qy pipx
+
+# Remove pre-commit
+rm-pre-commit:
+    @pipx --quiet uninstall pre-commit
 
 # Remove Trivy
 rm-trivy:
