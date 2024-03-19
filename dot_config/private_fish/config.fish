@@ -1,7 +1,7 @@
 
 # Add .local/bin/ directory to $PATH if present
 if test -d "$HOME/.local/bin"
-        fish_add_path --path --append "$HOME/.local/bin"
+    fish_add_path --path --append "$HOME/.local/bin"
 end
 
 if status is-interactive
