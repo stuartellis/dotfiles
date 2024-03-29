@@ -18,8 +18,6 @@ if status is-interactive
     command -q code && set -gx EDITOR code
 
     # Add abbr to call recipes in user Justfile by typing ".j"
-    if command -s just > /dev/null
-      abbr --add .j just --justfile $HOME/.user.justfile --working-directory .
-    end
+    abbr --add .j just --justfile $HOME/.user.justfile --working-directory .
 
 end
