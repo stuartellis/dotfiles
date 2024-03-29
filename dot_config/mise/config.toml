@@ -1,0 +1,9 @@
+[tools]
+usage = "latest"
+opentofu = "latest"
+mani = "latest"
+trivy = "latest"
+chezmoi = "latest"
+kubectl = "latest"
+helm = "latest"
+awscli = "latest"
