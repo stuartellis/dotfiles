@@ -1,8 +1,3 @@
-chezmoi_version := '2.46.1'
-helm_version := '3.14.3'
-k8s_version := '1.29.3'
-mani_version := '0.25.0'
-trivy_version := '0.49.1'
 container_exe := 'podman'
 backups_dir := join(home_directory(), 'backups')
 downloads_dir := if os() == 'linux' { join(home_directory(), 'Downloads') } else { if os() == "macos" { join(home_directory(), 'Downloads') } else { if os() == "windows" { join(home_directory(), 'Downloads') } else { error('Unsupported operating system') } } }
@@ -30,53 +25,9 @@ add-ansible: add-pipx
     @pipx --quiet install ansible-core
     @pipx --quiet inject ansible-core boto3
 
-# Install AWS CLI
-add-awscli:
-    #!/usr/bin/env sh
-    set -eu
-    $TEMP_DOWNLOAD_DIR="{{ join(downloads_dir, 'tmp', 'awscli') }}"
-    mkdir -p $TEMP_DOWNLOAD_DIR
-    cd $TEMP_DOWNLOAD_DIR
-    APP_DOWNLOAD_URL="https://awscli.amazonaws.com/awscli-exe-{{ os() }}-{{ arch() }}.zip"
-    curl -S -s $APP_DOWNLOAD_URL -o "awscliv2.zip"
-    unzip awscliv2.zip
-    sudo ./aws/install --update
-    cd "{{ join(downloads_dir, 'tmp') }}"
-    rm -fr $TEMP_DOWNLOAD_DIR
-
-# Install Chezmoi
-add-chezmoi:
-    #!/usr/bin/env sh
-    set -eu
-    TEMP_DOWNLOAD_DIR="{{ join(downloads_dir, 'tmp', 'chezmoi') }}"
-    mkdir -p $TEMP_DOWNLOAD_DIR
-    cd $TEMP_DOWNLOAD_DIR
-    APP_DOWNLOAD_URL=https://github.com/twpayne/chezmoi/releases/download/v{{ chezmoi_version }}/chezmoi_{{ chezmoi_version }}_{{ os() }}_{{ go_arch }}.tar.gz    
-    curl -S -s -L $APP_DOWNLOAD_URL > chezmoi.tar.gz
-    tar xzf chezmoi.tar.gz chezmoi
-    mkdir -p "{{ executable_directory() }}"
-    cp chezmoi {{ join(executable_directory(), 'chezmoi') }}
-    cd "{{ join(downloads_dir, 'tmp') }}"
-    rm -fr $TEMP_DOWNLOAD_DIR
-
 # Install Copier
 add-copier: add-pipx
     @pipx --quiet install copier
-
-# Install Mani
-add-mani:
-    #!/usr/bin/env sh
-    set -eu
-    TEMP_DOWNLOAD_DIR="{{ join(downloads_dir, 'tmp', 'mani') }}"
-    mkdir -p $TEMP_DOWNLOAD_DIR
-    cd $TEMP_DOWNLOAD_DIR
-    APP_DOWNLOAD_URL=https://github.com/alajmo/mani/releases/download/v{{ mani_version }}/mani_{{ mani_version }}_{{ os() }}_{{ go_arch }}.tar.gz
-    curl -S -s -L $APP_DOWNLOAD_URL > mani.tar.gz
-    tar xzf mani.tar.gz mani
-    mkdir -p "{{ executable_directory() }}"
-    cp mani "{{ executable_directory() }}"
-    cd "{{ join(downloads_dir, 'tmp') }}"
-    rm -fr $TEMP_DOWNLOAD_DIR
 
 # Install pipx
 add-pipx:
@@ -86,21 +37,6 @@ add-pipx:
 # Install pre-commit
 add-pre-commit: add-pipx
     @pipx --quiet install pre-commit
-
-# Install Trivy
-add-trivy:
-    #!/usr/bin/env sh
-    set -eu
-    TEMP_DOWNLOAD_DIR="{{ join(downloads_dir, 'tmp', 'trivy') }}"
-    mkdir -p $TEMP_DOWNLOAD_DIR
-    cd $TEMP_DOWNLOAD_DIR   
-    APP_DOWNLOAD_URL=https://github.com/aquasecurity/trivy/releases/download/v{{ trivy_version }}/trivy_{{ trivy_version }}_Linux-64bit.tar.gz
-    curl -S -s -L $APP_DOWNLOAD_URL > trivy.tar.gz
-    tar xzf trivy.tar.gz trivy
-    mkdir -p "{{ executable_directory() }}"
-    cp trivy "{{ executable_directory() }}"
-    cd "{{ join(downloads_dir, 'tmp') }}"
-    rm -fr $TEMP_DOWNLOAD_DIR
 
 # Backup Joplin
 backup-joplin:
@@ -121,17 +57,9 @@ clean-oci:
 rm-ansible:
     @pipx --quiet uninstall ansible-core
 
-# Remove Chezmoi
-rm-chezmoi:
-    @rm -f "{{ join(executable_directory(), 'chezmoi') }}"
-
 # Remove Copier
 rm-copier:
     @pipx --quiet uninstall copier
-
-# Remove Mani
-rm-mani:
-    @rm -f "{{ join(executable_directory(), 'mani') }}"
 
 # Remove pipx
 rm-pipx:
@@ -141,39 +69,3 @@ rm-pipx:
 # Remove pre-commit
 rm-pre-commit:
     @pipx --quiet uninstall pre-commit
-
-# Remove Trivy
-rm-trivy:
-    @rm -f "{{ join(executable_directory(), 'trivy') }}"
-
-## Kubernetes
-
-# Install Helm
-add-helm:
-    #!/usr/bin/env sh
-    set -eu
-    TEMP_DOWNLOAD_DIR="{{ join(downloads_dir, 'tmp', 'helm') }}"
-    mkdir -p $TEMP_DOWNLOAD_DIR
-    cd $TEMP_DOWNLOAD_DIR
-    APP_DOWNLOAD_URL=https://get.helm.sh/helm-v{{ helm_version }}-{{ os() }}-{{ go_arch }}.tar.gz
-    curl -S -s -L $APP_DOWNLOAD_URL > helm.tar.gz
-    tar xzf helm.tar.gz "{{ os() }}-{{ go_arch }}/helm"
-    mkdir -p "{{ executable_directory() }}"
-    cp "{{ os() }}-{{ go_arch }}/helm" "{{ executable_directory() }}"
-    cd "{{ join(downloads_dir, 'tmp') }}"
-    rm -fr $TEMP_DOWNLOAD_DIR
-
-rm-helm:
-    @rm -f "{{ join(executable_directory(), 'helm') }}"
-
-add-kubectl:
-    #!/usr/bin/env sh
-    set -eu
-    APP_DOWNLOAD_URL="https://dl.k8s.io/release/v{{ k8s_version }}/bin/linux/amd64/kubectl" 
-    APP_EXE_PATH="{{ join(executable_directory(), 'kubectl') }}"
-    curl -s -S -L $APP_DOWNLOAD_URL -o $APP_EXE_PATH
-    chmod 0755 $APP_EXE_PATH
-
-rm-kubectl:
-    @rm -f "{{ join(executable_directory(), 'kubectl') }}"
-

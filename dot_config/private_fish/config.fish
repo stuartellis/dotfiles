@@ -4,6 +4,13 @@ if test -d "$HOME/.local/bin"
     fish_add_path --path --append "$HOME/.local/bin"
 end
 
+# Enable mise
+if status is-interactive
+  mise activate fish | source
+else
+  mise activate fish --shims | source
+end
+
 if status is-interactive
 
     # Use Visual Studio Code as editor if available
