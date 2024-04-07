@@ -21,6 +21,6 @@ if status is-interactive
     abbr --add .j just --justfile $HOME/.user.justfile --working-directory .
 
     # Add abbr for 
-    abbr --add .s ssh stuartellis@192.168.1.152
+    abbr --add .s ssh $USER@192.168.1.152
 
 end
