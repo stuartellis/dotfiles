@@ -20,14 +20,16 @@ system-info:
     @echo "Executables directory: {{ executable_directory() }}"
     @echo "Downloads directory: {{ downloads_dir }}"
 
-# Install Ansible
-add-ansible: add-pipx
-    @pipx --quiet install ansible-core
-    @pipx --quiet inject ansible-core boto3
+# Install tools
+bootstrap: add-pipx add-copier add-pip-tools add-pre-commit
 
 # Install Copier
-add-copier: add-pipx
+add-copier:
     @pipx --quiet install copier
+
+# Install pip-tools
+add-pip-tools:
+    @pipx --quiet install pip-tools
 
 # Install pipx
 add-pipx:
@@ -35,7 +37,7 @@ add-pipx:
     @python3 -m pipx ensurepath
 
 # Install pre-commit
-add-pre-commit: add-pipx
+add-pre-commit:
     @pipx --quiet install pre-commit
 
 # Backup Joplin
@@ -53,13 +55,13 @@ clean-oci:
     @{{ container_exe }} container prune -f
     @{{ container_exe }} image prune -f
 
-# Remove Ansible
-rm-ansible:
-    @pipx --quiet uninstall ansible-core
-
 # Remove Copier
 rm-copier:
     @pipx --quiet uninstall copier
+
+# Remove pip-tools
+rm-pip-tools:
+    @pipx --quiet uninstall pip-tools
 
 # Remove pipx
 rm-pipx:
