@@ -1,0 +1,84 @@
+# SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuartstuartellis.name>
+#
+# SPDX-License-Identifier: MIT
+#
+# Tasks for the Task runner:
+#
+# https://taskfile.dev
+
+version: '3'
+
+silent: true
+
+vars:
+  CONTAINER_EXE: podman
+  JOPLIN_BACKUPS_DIR: joplin-backups
+
+tasks:
+
+  bootstrap:
+    desc: Bootstrap
+    cmds:
+      - task: add-pipx 
+      - task: add-copier
+      - task: add-pip-tools
+      - task: add-pre-commit
+
+  add-copier:
+    desc: Install Copier
+    cmds:
+      - pipx --quiet install copier
+
+  add-pip-tools:
+    desc: Install pip-tools
+    cmds:
+      - pipx --quiet install pip-tools
+
+  add-pipx:
+    desc: Install pipx
+    cmds:
+      - python3 -m pip install --user pipx
+      - python3 -m pipx ensurepath
+
+  add-pre-commit:
+    desc: Install pre-commit
+    cmds:
+      - pipx --quiet install pre-commit
+
+  backup-joplin:
+    desc: Backup Joplin
+    cmds:
+      - mkdir -p "{{.JOPLIN_BACKUPS_PATH}}"
+      - zip -r "{{.JOPLIN_BACKUPS_PATH}}/joplin-backup-{{.BACKUP_TIMESTAMP}}.zip" "{{.CONFIG_DIR}}/joplin-desktop"
+    vars:
+      BACKUP_TIMESTAMP:
+        sh: date -u +"%Y-%m-%dT%H-%M-%SZ"
+      JOPLIN_BACKUPS_PATH: "{{.HOME}}/{{.JOPLIN_BACKUPS_DIR}}"
+      CONFIG_DIR: "{{.HOME}}/.config"
+
+  clean-oci:
+    desc: Remove obsolete containers and images
+    cmds:
+      - "{{.CONTAINER_EXE}} container prune -f"
+      - "{{.CONTAINER_EXE}} image prune -f"
+
+  rm-copier:
+    desc: Remove Copier
+    cmds:
+      - pipx --quiet uninstall copier
+
+  rm-pip-tools:
+    desc: Remove pip-tools
+    cmds:
+      - pipx --quiet uninstall pip-tools
+
+  rm-pipx:
+    desc: Remove pipx
+    cmds:
+      - pipx uninstall-all
+      - python3 -m pip uninstall -qy pipx
+
+  rm-pre-commit:
+    desc: Remove pre-commit
+    cmds:
+      - pipx --quiet uninstall pre-commit
