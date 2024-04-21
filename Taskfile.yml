@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuartstuartellis.name>
+# SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuart@stuartellis.name>
 #
 # SPDX-License-Identifier: MIT
 #
@@ -6,7 +6,7 @@
 #
 # https://taskfile.dev
 
-version: '3'
+version: "3"
 
 silent: true
 
@@ -15,11 +15,14 @@ vars:
   JOPLIN_BACKUPS_DIR: joplin-backups
 
 tasks:
+  default:
+    cmds:
+      - task: list
 
   bootstrap:
     desc: Bootstrap
     cmds:
-      - task: add-pipx 
+      - task: add-pipx
       - task: add-copier
       - task: add-pip-tools
       - task: add-pre-commit
@@ -62,6 +65,11 @@ tasks:
       - "{{.CONTAINER_EXE}} container prune -f"
       - "{{.CONTAINER_EXE}} image prune -f"
 
+  list:
+    desc: List available tasks
+    cmds:
+      - task --list
+
   rm-copier:
     desc: Remove Copier
     cmds:
@@ -82,3 +90,9 @@ tasks:
     desc: Remove pre-commit
     cmds:
       - pipx --quiet uninstall pre-commit
+
+  system-info:
+    desc: Display system information
+    cmds:
+      - "echo CPU architecture: {{ARCH}}"
+      - "echo Operating system: {{OS}}"
