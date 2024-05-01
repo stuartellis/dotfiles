@@ -1,3 +1,10 @@
+
+# SPDX-FileCopyrightText: 2016 Andrey Nering
+#
+# SPDX-License-Identifier: MIT
+#
+# From: https://github.com/go-task/task/blob/606a8f9db501831e1612e43c09914573306a50ef/completion/fish/task.fish
+
 set GO_TASK_PROGNAME task
 
 function __task_get_tasks --description "Prints all available tasks with their description"
