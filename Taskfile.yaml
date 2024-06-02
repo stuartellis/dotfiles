@@ -62,8 +62,7 @@ tasks:
   clean-oci:
     desc: Remove obsolete containers and images
     cmds:
-      - "{{.CONTAINER_EXE}} container prune -f"
-      - "{{.CONTAINER_EXE}} image prune -f"
+      - "{{.CONTAINER_EXE}} system prune -f"
 
   list:
     desc: List available tasks
