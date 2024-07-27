@@ -15,21 +15,21 @@ vars:
   JOPLIN_BACKUPS_DIR: joplin-backups
 
 tasks:
-   default:
-     cmds:
-       - task: list
+  default:
+    cmds:
+      - task: list
 
-   setup:
-     desc: Set up working tools
-      cmds:
-        - task: add-pipx
-        - task: add-pip-tools
-        - task: add-pre-commit
+  setup:
+    desc: Set up working tools
+    cmds:
+      - task: add-pipx
+      - task: add-pip-tools
+      - task: add-pre-commit
  
-   add-pip-tools:
-     desc: Install pip-tools
-     cmds:
-       - pipx --quiet install pip-tools
+  add-pip-tools:
+    desc: Install pip-tools
+    cmds:
+      - pipx --quiet install pip-tools
 
   add-pipx:
     desc: Install pipx
@@ -84,4 +84,3 @@ tasks:
     cmds:
       - "echo CPU architecture: {{ARCH}}"
       - "echo Operating system: {{OS}}"
-
