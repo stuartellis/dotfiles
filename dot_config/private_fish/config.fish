@@ -27,7 +27,7 @@ if status is-interactive
     end
 
     # Add abbr for server
-    abbr --add .s ssh $USER@192.168.1.152
+    abbr --add .s ssh $USER@192.168.1.160
 
 end
 
