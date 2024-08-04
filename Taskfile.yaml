@@ -12,7 +12,7 @@ silent: true
 
 vars:
   CONTAINER_EXE: podman
-  JOPLIN_BACKUPS_DIR: joplin-backups
+  JOPLIN_BACKUPS_DIR: backups/joplin-backups
 
 tasks:
   default:
