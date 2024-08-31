@@ -1,8 +1,11 @@
-[profile sel-np]
+[profile origin-human]
 region = eu-west-2
-credential_process = aws-vault exec sel-np --json
 
-
-[profile se-origin]
+[human-sve-np]
 region = eu-west-2
-credential_process = aws-vault exec se-origin --json
+
+[human-sve-prod]
+region = eu-west-2
+
+[default]
+region = eu-west-2
